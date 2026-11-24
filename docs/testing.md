@@ -72,6 +72,8 @@ this app. Fix: `LanguageProvider` now saves `window.scrollY` immediately before 
 than a timer guess. Re-tested as T04: fixed, confirmed on two separate language pairs
 (EN→RU and EN→KK). Shipped in commit `2da76b1`, along with the regression's unit-test-free root cause
 meaning it could only be caught by this kind of interactive test — noted in §5 as a coverage gap.
+Re-confirmed a second time directly against the live Render deployment after it redeployed
+(RU→EN while scrolled to `#about`): scroll position held.
 
 ## 4. HTTPS / header review (feeds into §6 security review)
 
