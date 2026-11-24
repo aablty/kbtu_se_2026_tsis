@@ -1,11 +1,11 @@
-%% Sequence diagram — Contact form submission via WAHA (self-hosted WhatsApp HTTP API)
-%% Pseudo-level: the WAHA call is the only server-side/dynamic flow in the site.
+%% Sequence diagram — Contact form submission via the Telegram Bot API
+%% Pseudo-level: the Telegram call is the only server-side/dynamic flow in the site.
 sequenceDiagram
     actor Visitor
     participant Form as ContactForm (client component)
     participant Route as /api/contact (Next.js API route)
-    participant Env as Server env (WAHA_API_KEY, WAHA_API_URL, WAHA_SESSION_NAME)
-    participant WAHA as Author's self-hosted WAHA instance
+    participant Env as Server env (BOT_TOKEN, CHAT_ID)
+    participant Telegram as Telegram Bot API (api.telegram.org)
 
     Visitor->>Form: Fill name, message, pick callback method (WhatsApp/phone, Telegram, or Email) from a selector, enter matching contact value, submit
     Form->>Form: Client-side validation (required fields; value format checked against the selected method)
@@ -16,20 +16,20 @@ sequenceDiagram
         Route-->>Form: 400 + error reason
         Form-->>Visitor: Show inline error, keep entered values
     else validation passes
-        Route->>Env: Read WAHA_API_KEY / WAHA_API_URL / WAHA_SESSION_NAME
-        Route->>WAHA: POST {WAHA_API_URL}/sendText (session=WAHA_SESSION_NAME, key=WAHA_API_KEY, text=composed message incl. name, chosen callback method + value, and the visitor's message)
-        activate WAHA
-        alt WAHA accepts
-            WAHA-->>Route: 2xx (message queued/sent)
+        Route->>Env: Read BOT_TOKEN / CHAT_ID
+        Route->>Telegram: POST https://api.telegram.org/bot{BOT_TOKEN}/sendMessage (chat_id=CHAT_ID, text=composed message incl. name, chosen callback method + value, and the visitor's message)
+        activate Telegram
+        alt Telegram accepts
+            Telegram-->>Route: 2xx (message sent)
             Route-->>Form: 200 success
             Form-->>Visitor: Show "message sent" confirmation
-        else WAHA/network error
-            WAHA-->>Route: error / timeout
-            Route-->>Form: 502 + generic error (no WAHA internals leaked)
-            Form-->>Visitor: Show "try again later" + fallback to email/Telegram
+        else Telegram/network error
+            Telegram-->>Route: error / timeout
+            Route-->>Form: 502 + generic error (no Telegram internals leaked)
+            Form-->>Visitor: Show "try again later" + fallback to email/Telegram handle
         end
-        deactivate WAHA
+        deactivate Telegram
     end
     deactivate Route
 
-    note over Route,Env: WAHA_API_KEY never reaches the browser — read only<br/>inside the API route, which runs server-side only.
+    note over Route,Env: BOT_TOKEN never reaches the browser — read only<br/>inside the API route, which runs server-side only.

@@ -65,12 +65,12 @@ found in the CV:
 
 - **Email**: `contact@aablty.one` (dedicated address, not the personal CV email)
 - **Telegram**: `@aablty`
-- **Contact form**: server-side, via the author's self-hosted WAHA (WhatsApp HTTP API) instance (see
-  requirements.md §10). The form does not assume the visitor wants to be called back by phone only — it
-  offers a callback-method selector (WhatsApp/phone, Telegram, or Email) plus one matching value field,
-  so the visitor picks whichever channel they actually check. The author only ever receives the
-  submission as a WhatsApp message via WAHA; the selector changes what contact value is in that
-  message, not the transport.
+- **Contact form**: server-side, via the Telegram Bot API (`BOT_TOKEN`/`CHAT_ID`, see requirements.md
+  §10) — replaces the earlier WAHA/WhatsApp integration since the author checks Telegram more
+  regularly. The form does not assume the visitor wants to be called back by phone only — it offers a
+  callback-method selector (WhatsApp/phone, Telegram, or Email) plus one matching value field, so the
+  visitor picks whichever channel they actually check. The author only ever receives the submission as
+  a Telegram message; the selector changes what contact value is in that message, not the transport.
 
 No phone number, home address, or personal document is exposed through any contact channel.
 

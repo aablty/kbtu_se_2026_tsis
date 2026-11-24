@@ -35,7 +35,7 @@ graph TD
     subgraph "Content & server boundary"
         Dictionaries["Static dictionaries (content/{kk,ru,en}/*.json)"]
         ContactRoute["API route: app/api/contact/route.ts (server only)"]
-        WAHAClient["WAHA client helper (server-only module, reads WAHA_* env vars)"]
+        TelegramClient["Telegram client helper (server-only module, reads BOT_TOKEN/CHAT_ID)"]
     end
 
     RootLayout --> Header
@@ -70,4 +70,4 @@ graph TD
 
     ContactPage --> ContactForm
     ContactForm --> ContactRoute
-    ContactRoute --> WAHAClient
+    ContactRoute --> TelegramClient

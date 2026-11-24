@@ -16,7 +16,7 @@ Five real routes, one shared layout, no auth:
 | `/about` | About & Education | KBTU, major, class years, previous-school note (no school name), gold medal |
 | `/interests` | Interests & Activities | Interests, activities, completed subjects |
 | `/future-plans` | Future Plans | Detail-free future-plans summary |
-| `/contact` | Contact | Email, Telegram, WAHA contact form |
+| `/contact` | Contact | Email, Telegram, contact form sent via Telegram Bot API |
 
 A single root layout wraps every route with a `Header` (nav + `LanguageSwitcher` + `ThemeToggle`)
 and a `Footer` (email, Telegram, Lucide attribution), so the language switch and theme toggle are
@@ -34,9 +34,9 @@ Diagram source: `docs/diagrams/component-structure.mmd`.
 - **Client-only components** (`LanguageSwitcher`, `ThemeToggle`, `ContactForm`) are the only
   `'use client'` boundaries — kept as low in the tree as the Next.js routing skill recommends, each
   backed by its own context provider (`LanguageProvider`, `ThemeProvider`).
-- **Server boundary**: `app/api/contact/route.ts` plus a server-only WAHA client helper module are
-  the one place that touches `WAHA_API_KEY` / `WAHA_API_URL` / `WAHA_SESSION_NAME`. Nothing in the
-  pages or client components imports that module.
+- **Server boundary**: `app/api/contact/route.ts` plus a server-only Telegram client helper module are
+  the one place that touches `BOT_TOKEN` / `CHAT_ID`. Nothing in the pages or client components
+  imports that module.
 
 ## 3. Navigation
 
@@ -62,18 +62,20 @@ page falls back to omitting that section rather than rendering blank/broken cont
   time by the Server Component pages. This is the bulk of the site (NFR-07: translated strings
   separate from markup). Portrait photo and any future stock image are static assets per
   content-inventory §2.
-- **Server-side/dynamic (the one exception)**: the WAHA contact-form submission. The `ContactForm`
-  client component only ever calls the app's own `/api/contact` Next.js API route over HTTPS; the
-  API route is the sole place that reads `WAHA_API_KEY`, `WAHA_API_URL`, `WAHA_SESSION_NAME` from
-  server environment variables and calls the author's self-hosted WAHA instance. These env vars are
-  never exposed to the client bundle (no `NEXT_PUBLIC_` prefix, never passed as props/JSON to the
-  browser), so the contact flow is the only place secrets or server-only logic exist.
+- **Server-side/dynamic (the one exception)**: the contact-form submission, sent via the Telegram Bot
+  API. The `ContactForm` client component only ever calls the app's own `/api/contact` Next.js API
+  route over HTTPS; the API route is the sole place that reads `BOT_TOKEN` and `CHAT_ID` from server
+  environment variables and calls `https://api.telegram.org/bot{BOT_TOKEN}/sendMessage`. These env
+  vars are never exposed to the client bundle (no `NEXT_PUBLIC_` prefix, never passed as props/JSON to
+  the browser), so the contact flow is the only place secrets or server-only logic exist. (Switched
+  from the author's self-hosted WAHA/WhatsApp instance to the Telegram Bot API — the author checks
+  Telegram more regularly than WhatsApp.)
 - **Contact-form callback method**: the form does not hard-code "phone" as the only way back. It has a
   `callbackMethod` selector (`whatsapp` | `telegram` | `email`) plus one `callbackValue` field whose
   label/placeholder and format validation adapt to the chosen method. The API route validates
   `callbackMethod` against that fixed enum and includes the visitor's chosen method + value in the
-  WhatsApp message it sends to the author via WAHA — WAHA remains the one transport (the author's own
-  inbox), the selector only changes how the author is told to call the visitor back.
+  Telegram message it sends to the author — Telegram remains the one notification transport (the
+  author's own chat), the selector only changes how the author is told to call the visitor back.
 
 ## 6. Design decisions & trade-offs
 
@@ -85,12 +87,12 @@ matches the zero-budget constraint (C-06), needs no new service or API key, and 
 without a deploy, at the cost of a new external dependency, possible cost, and another thing to keep
 in sync with the content inventory's privacy classification.
 
-**Decision 2 — API route vs. server action for the WAHA call.**
+**Decision 2 — API route vs. server action for the Telegram call.**
 Chosen: a Next.js **API route** (`app/api/contact/route.ts`) rather than a React Server Action.
 Trade-off: an API route needs its own fetch call from the client and its own request/response
 typing, slightly more boilerplate than a server action invoked directly from the form. In exchange,
 it gives a stable, explicit HTTP contract (method, status codes, JSON body) that's easy to reason
-about for a security-sensitive, third-party-calling endpoint, and it keeps the WAHA client helper
+about for a security-sensitive, third-party-calling endpoint, and it keeps the Telegram client helper
 unambiguously server-only (a server action is also server-only, but the route makes the trust
 boundary visible in the URL/network tab, which matters here since the form also collects a
 visitor-chosen callback value — a phone number, Telegram handle, or email address).

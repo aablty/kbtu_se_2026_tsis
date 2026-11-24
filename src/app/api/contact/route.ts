@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { CallbackMethod } from "@/content/types";
-import { sendContactViaWaha } from "@/lib/waha";
+import { sendContactViaTelegram } from "@/lib/telegram";
 
 const CALLBACK_METHODS: readonly CallbackMethod[] = ["whatsapp", "telegram", "email"];
 
@@ -42,14 +42,14 @@ export async function POST(request: Request) {
   }
 
   try {
-    await sendContactViaWaha({
+    await sendContactViaTelegram({
       name: name.trim(),
       callbackMethod,
       callbackValue: callbackValue.trim(),
       message: message.trim(),
     });
   } catch {
-    // Never leak WAHA internals (URL, key, status detail) to the client.
+    // Never leak Telegram internals (bot token, chat id, status detail) to the client.
     return NextResponse.json({ error: "send_failed" }, { status: 502 });
   }
 

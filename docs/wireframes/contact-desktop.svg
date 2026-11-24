@@ -1,6 +1,6 @@
 <svg viewBox="0 0 1280 680" xmlns="http://www.w3.org/2000/svg" role="img">
 <title>Contact page - desktop wireframe</title>
-<desc>Nav header; section title; left card with email and Telegram; right card with contact form (name, callback-method selector [WhatsApp/Telegram/Email] + matching value field, message) noting server-side WAHA WhatsApp send.</desc>
+<desc>Nav header; section title; left card with email and Telegram; right card with contact form (name, callback-method selector [WhatsApp/Telegram/Email] + matching value field, message) noting server-side Telegram Bot API send.</desc>
 <rect x="0" y="0" width="1280" height="680" fill="#FFFFFF" stroke="#333333"/>
 <rect x="0" y="0" width="1280" height="64" fill="#FFFFFF" stroke="#333333"/>
 <text x="24" y="38" font-size="18" fill="#333333">N.N.</text>
@@ -26,7 +26,7 @@
 <rect x="520" y="448" width="660" height="90" fill="none" stroke="#333333"/>
 <rect x="520" y="558" width="150" height="40" fill="#FFFFFF" stroke="#333333" stroke-width="1.5"/>
 <text x="545" y="583" font-size="13" fill="#333333">Send</text>
-<text x="520" y="615" font-size="10" fill="#999999">submits server-side via WAHA WhatsApp; chosen callback method/value only seen by the author</text>
+<text x="520" y="615" font-size="10" fill="#999999">submits server-side via Telegram Bot API; chosen callback method/value only seen by the author</text>
 <rect x="0" y="630" width="1280" height="50" fill="#FFFFFF" stroke="#333333"/>
 <text x="24" y="660" font-size="11" fill="#777777">footer</text>
 </svg>

@@ -14,8 +14,8 @@ Before writing, call the Skill tool for: `hzblj-skills:how`, `hzblj-skills:why`,
 Deliverables you produce, always in editable source (Mermaid or PlantUML `.mmd`/`.puml` files under
 `docs/diagrams/`), never as a single giant diagram nobody can review:
 - Sitemap / information architecture (pseudo-level: page names and relationships, not component trees).
-- One use-case or sequence diagram for a real flow (e.g. contact-form submission via WAHA, or
-  language switch).
+- One use-case or sequence diagram for a real flow (e.g. contact-form submission via the Telegram Bot
+  API, or language switch).
 - One component or class diagram for the page/component structure.
 - A short architecture doc (`docs/architecture.md`) covering: page/component structure, navigation,
   language-switching mechanism, storage approach (what's static vs. server-side), and at least two

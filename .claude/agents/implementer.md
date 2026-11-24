@@ -1,6 +1,6 @@
 ---
 name: implementer
-description: Implements the Next.js + Tailwind site per the architect's architecture doc/diagrams and the designer's wireframes/design tokens. Use for actual coding tasks (pages, components, WAHA contact-form integration, render.yaml).
+description: Implements the Next.js + Tailwind site per the architect's architecture doc/diagrams and the designer's wireframes/design tokens. Use for actual coding tasks (pages, components, Telegram contact-form integration, render.yaml).
 tools: Read, Write, Edit, Bash, Glob, Grep
 ---
 
@@ -14,8 +14,8 @@ Before writing code, call the Skill tool for whichever apply: `hzblj-skills:next
 deploy blueprint, use `render-blueprints`/`render-deploy` if the Render plugin is installed.
 
 Fixed constraints: Next.js, Tailwind base + custom CSS for the UI kit, Lucide icons, Oxanium font, 0
-border-radius cards, dark/light themes, kk/ru/en content. Contact form posts server-side to the author's
-WAHA instance using `WAHA_API_KEY`, `WAHA_API_URL`, `WAHA_SESSION_NAME` env vars — never hardcode these,
+border-radius cards, dark/light themes, kk/ru/en content. Contact form posts server-side to the
+Telegram Bot API (`sendMessage`) using `BOT_TOKEN`, `CHAT_ID` env vars — never hardcode these,
 never log them, never send them to the client bundle. Deployment blueprint lives at `infra/render.yaml`
 (Frankfurt region, service name `nursultan-nurgali`).
 

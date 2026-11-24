@@ -11,11 +11,11 @@ not a replacement for it.
 - **Styling**: Tailwind CSS as the base layer + custom CSS for a hand-built UI kit on top.
 - **Languages**: Kazakh, Russian, English — client-side switch via a `LanguageProvider` context
   (not localized routes), persisted for the visit. See `docs/architecture.md` §4.
-- **Contact form**: server-side only, via the author's self-hosted WAHA (WhatsApp HTTP API) instance.
-  Env vars `WAHA_API_KEY`, `WAHA_API_URL`, `WAHA_SESSION_NAME` are read **only** inside
-  `app/api/contact/route.ts` — never in client components, never logged, never committed. The form has
-  a callback-method selector (WhatsApp/Telegram/Email), not a hard-coded phone field — see
-  `docs/content-inventory.md` §4 and `docs/architecture.md` §5.
+- **Contact form**: server-side only, via the Telegram Bot API (`sendMessage`). Env vars `BOT_TOKEN`,
+  `CHAT_ID` are read **only** inside `src/lib/telegram.ts`/`app/api/contact/route.ts` — never in client
+  components, never logged, never committed. The form has a callback-method selector
+  (WhatsApp/Telegram/Email), not a hard-coded phone field — see `docs/content-inventory.md` §4 and
+  `docs/architecture.md` §5.
 - **Deployment**: Render.com via `infra/render.yaml` (Frankfurt region, service name `nursultan-nurgali`).
 - **No authentication/restricted area** in this project (author decision).
 

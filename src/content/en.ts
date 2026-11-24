@@ -106,7 +106,7 @@ const en: Dictionary = {
     errorMessage: "Something went wrong sending your message. Please try again later, or use the email/Telegram above.",
     validationError: "Please fill in all fields with a value matching your chosen callback method.",
     helperNote:
-      "Submitted server-side via WhatsApp (WAHA); your chosen callback method and value are only seen by the author.",
+      "Submitted server-side via Telegram; your chosen callback method and value are only seen by the author.",
   },
   footer: {
     iconsCredit: "Icons by Lucide",

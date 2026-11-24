@@ -133,10 +133,10 @@ These are fixed constraints for the design (Task #03) and implementation tasks, 
   as a Cyrillic/Kazakh fallback (Oxanium is Latin-only; Exo 2's Google Fonts language list confirms Kazakh
   support — see content-inventory.md §2 and design-tokens.md §2), 0 border-radius on cards, minimal/flat
   cards with subtle shadows, dark/light theme support, minimalistic "technical" visual tone.
-- **Contact form**: server-side integration with the author's self-hosted WAHA (WhatsApp HTTP API) instance,
-  using `WAHA_API_KEY`, `WAHA_API_URL`, `WAHA_SESSION_NAME` env vars — sends the contact message (incl. a
-  phone field) via WhatsApp rather than email. Supersedes the "TBD" note on the contact form in
-  content-inventory.md §4.
+- **Contact form**: server-side integration with the Telegram Bot API, using `BOT_TOKEN` and `CHAT_ID`
+  env vars — sends the contact message (name, chosen callback method/value, message) to the author's
+  Telegram chat rather than email. Replaces the earlier WAHA/WhatsApp integration (the author checks
+  Telegram more regularly) and supersedes the "TBD" note on the contact form in content-inventory.md §4.
 - **Deployment**: Render.com via an Infrastructure-as-Code blueprint at `infra/render.yaml` — Frankfurt
   region, service name `nursultan-nurgali`. Replaces the earlier InfinityFree-only assumption in §4
   (C-01); InfinityFree remains an allowed fallback per the course brief, but Render.com is the author's
@@ -148,5 +148,6 @@ These are fixed constraints for the design (Task #03) and implementation tasks, 
 |------|------------|-------------|
 | 2026-11-24 | Baseline drafted | Initial FR/NFR/user stories/backlog created from TSIS #01 brief (Task #01: Requirements baseline and Agile plan) |
 | 2026-11-24 | Tech stack decided | Author specified Next.js, Tailwind+custom UI kit, Lucide/Oxanium design system, WAHA-based contact form, Render.com deployment blueprint (§10) ahead of Task #03 design |
+| 2026-11-24 | Contact-form transport swapped | Author replaced the WAHA/WhatsApp integration with the Telegram Bot API (`BOT_TOKEN`, `CHAT_ID`) — checks Telegram more regularly than WhatsApp. Updated §10, architecture.md, the sequence/component diagrams, content-inventory.md §4, wireframes, and lib/telegram.ts |
 | 2026-11-24 | Contact-form correction | Author asked that the contact form not assume phone as the only callback channel; added a callback-method selector (WhatsApp/Telegram/Email) with AC-06b, updated architecture.md, the sequence diagram, both contact wireframes, and content-inventory.md §4 |
 | 2026-11-24 | Font fallback added | Oxanium has no Cyrillic glyphs; verified via Google Fonts' own Glyphs & languages tool that Exo 2 (OFL) explicitly supports Kazakh, and added it as the kk/ru fallback across design-tokens.md, content-inventory.md §2, architecture.md §7, and CLAUDE.md |

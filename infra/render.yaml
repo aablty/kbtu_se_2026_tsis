@@ -8,11 +8,9 @@ services:
     buildCommand: bun install && bun run build
     startCommand: bun run start
     envVars:
-      - key: WAHA_API_URL
+      - key: BOT_TOKEN
         sync: false
-      - key: WAHA_API_KEY
-        sync: false
-      - key: WAHA_SESSION_NAME
+      - key: CHAT_ID
         sync: false
       - key: SITE_URL
         value: https://nursultan-nurgali.onrender.com
