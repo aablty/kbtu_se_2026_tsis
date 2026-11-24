@@ -1,0 +1,31 @@
+%% Sitemap / Information Architecture — Nursultan Nurgali personal website
+%% Pseudo-level: pages and navigation relationships only.
+graph TD
+    Root["Root layout (Header: logo/nav, LanguageSwitcher, ThemeToggle · Footer: email, Telegram, Lucide credit)"]
+
+    Home["/ — Home (hero/intro, short summary, links to other pages)"]
+    About["/about — About & Education (KBTU major, previous-school note, gold medal)"]
+    Interests["/interests — Interests & Activities (interests, activities, completed subjects)"]
+    Future["/future-plans — Future Plans"]
+    Contact["/contact — Contact (email, Telegram, WAHA contact form)"]
+    NotFound["not-found — 404 (unmatched route)"]
+
+    Root --> Home
+    Root --> About
+    Root --> Interests
+    Root --> Future
+    Root --> Contact
+    Root -.-> NotFound
+
+    Home -- nav link --> About
+    Home -- nav link --> Interests
+    Home -- nav link --> Future
+    Home -- nav link --> Contact
+    About -- nav link --> Interests
+    Interests -- nav link --> Future
+    Future -- nav link --> Contact
+    Contact -- nav link --> Home
+
+    %% Every page carries the same Header/Footer, so LanguageSwitcher and
+    %% ThemeToggle are reachable from any page (satisfies FR-04: switch from any page).
+    %% No auth/restricted area exists anywhere in the sitemap (author decision).

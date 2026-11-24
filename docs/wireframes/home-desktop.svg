@@ -1,0 +1,29 @@
+<svg viewBox="0 0 1280 760" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Home page - desktop wireframe</title>
+<desc>Header with nav, language switcher and theme toggle; hero with portrait placeholder, name, tagline, two CTAs; scroll cue.</desc>
+<rect x="0" y="0" width="1280" height="760" fill="#FFFFFF" stroke="#333333" stroke-width="1"/>
+<rect x="0" y="0" width="1280" height="64" fill="#FFFFFF" stroke="#333333" stroke-width="1"/>
+<text x="24" y="38" font-size="18" fill="#333333">N.N.</text>
+<text x="420" y="38" font-size="14" fill="#333333">[Home]  About  Interests  Future  Contact</text>
+<rect x="980" y="18" width="110" height="28" fill="none" stroke="#333333"/>
+<text x="995" y="37" font-size="12" fill="#333333">KK | RU | EN</text>
+<circle cx="1140" cy="32" r="14" fill="none" stroke="#333333"/>
+<text x="1128" y="36" font-size="10" fill="#777777">sun/moon</text>
+<rect x="1190" y="18" width="64" height="28" fill="none" stroke="#333333" stroke-dasharray="4 3"/>
+<text x="1198" y="37" font-size="11" fill="#777777">icon:menu</text>
+<rect x="120" y="150" width="300" height="360" fill="#EEEEEE" stroke="#333333"/>
+<text x="200" y="335" font-size="13" fill="#777777">portrait photo</text>
+<text x="500" y="220" font-size="30" fill="#333333">Nursultan Nurgali</text>
+<text x="500" y="260" font-size="16" fill="#777777">KBTU - B.Sc. Information Systems</text>
+<rect x="500" y="300" width="560" height="14" fill="#EEEEEE"/>
+<rect x="500" y="324" width="480" height="14" fill="#EEEEEE"/>
+<rect x="500" y="348" width="520" height="14" fill="#EEEEEE"/>
+<rect x="500" y="400" width="160" height="44" fill="#FFFFFF" stroke="#333333" stroke-width="1.5"/>
+<text x="525" y="427" font-size="14" fill="#333333">About Me</text>
+<rect x="680" y="400" width="160" height="44" fill="none" stroke="#333333" stroke-dasharray="4 3"/>
+<text x="710" y="427" font-size="14" fill="#333333">Contact</text>
+<line x1="640" y1="560" x2="640" y2="600" stroke="#777777" stroke-width="1"/>
+<text x="600" y="620" font-size="11" fill="#777777">scroll down (icon: chevron-down)</text>
+<rect x="0" y="690" width="1280" height="70" fill="#FFFFFF" stroke="#333333"/>
+<text x="24" y="730" font-size="11" fill="#777777">footer: icons credit, (c) note</text>
+</svg>

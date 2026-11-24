@@ -1,0 +1,18 @@
+<svg viewBox="0 0 375 620" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Future Plans page - mobile wireframe</title>
+<desc>Mobile header; section title; single stacked flat card with short statement.</desc>
+<rect x="0" y="0" width="375" height="620" fill="#FFFFFF" stroke="#333333"/>
+<rect x="0" y="0" width="375" height="56" fill="#FFFFFF" stroke="#333333"/>
+<text x="16" y="34" font-size="16" fill="#333333">N.N.</text>
+<rect x="320" y="16" width="36" height="24" fill="none" stroke="#333333" stroke-dasharray="4 3"/>
+<text x="24" y="100" font-size="20" fill="#333333">Future Plans</text>
+<rect x="24" y="130" width="327" height="300" fill="#FFFFFF" stroke="#333333"/>
+<text x="40" y="160" font-size="10" fill="#777777">icon: compass</text>
+<rect x="40" y="185" width="290" height="12" fill="#EEEEEE"/>
+<rect x="40" y="205" width="260" height="12" fill="#EEEEEE"/>
+<rect x="40" y="225" width="280" height="12" fill="#EEEEEE"/>
+<text x="40" y="280" font-size="10" fill="#999999">(statement: has SWE experience,</text>
+<text x="40" y="296" font-size="10" fill="#999999">interviewing for full-time roles)</text>
+<rect x="0" y="540" width="375" height="60" fill="#FFFFFF" stroke="#333333"/>
+<text x="16" y="575" font-size="10" fill="#777777">footer</text>
+</svg>

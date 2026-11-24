@@ -1,0 +1,73 @@
+%% Component/structure diagram — pseudo-level boxes and relationships only.
+%% No prop types, no CSS, no business logic.
+graph TD
+    subgraph "App shell"
+        RootLayout["RootLayout (app/layout.tsx) — <html>/<body>, ThemeProvider, LanguageProvider"]
+        Header["Header — site nav, LanguageSwitcher, ThemeToggle"]
+        Footer["Footer — email, Telegram link, Lucide attribution"]
+    end
+
+    subgraph "Pages (app/*/page.tsx — Server Components)"
+        HomePage["HomePage"]
+        AboutPage["AboutPage"]
+        InterestsPage["InterestsPage"]
+        FuturePage["FuturePlansPage"]
+        ContactPage["ContactPage"]
+    end
+
+    subgraph "Shared presentation components"
+        Card["Card (flat, 0 border-radius, subtle shadow)"]
+        SectionHeading["SectionHeading"]
+        Icon["Icon wrapper (Lucide)"]
+    end
+
+    subgraph "Client-only interactive components"
+        LanguageSwitcher["LanguageSwitcher (use client) → LanguageProvider"]
+        ThemeToggle["ThemeToggle (use client) → ThemeProvider"]
+        ContactForm["ContactForm (use client) → POST /api/contact"]
+    end
+
+    subgraph "Cross-cutting providers/context"
+        LanguageProvider["LanguageProvider (use client) — holds selected locale, persists to localStorage/cookie"]
+        ThemeProvider["ThemeProvider (use client) — holds light/dark, persists to localStorage/cookie"]
+    end
+
+    subgraph "Content & server boundary"
+        Dictionaries["Static dictionaries (content/{kk,ru,en}/*.json)"]
+        ContactRoute["API route: app/api/contact/route.ts (server only)"]
+        WAHAClient["WAHA client helper (server-only module, reads WAHA_* env vars)"]
+    end
+
+    RootLayout --> Header
+    RootLayout --> Footer
+    RootLayout --> LanguageProvider
+    RootLayout --> ThemeProvider
+    RootLayout --> HomePage
+    RootLayout --> AboutPage
+    RootLayout --> InterestsPage
+    RootLayout --> FuturePage
+    RootLayout --> ContactPage
+
+    Header --> LanguageSwitcher
+    Header --> ThemeToggle
+    LanguageSwitcher --> LanguageProvider
+    ThemeToggle --> ThemeProvider
+
+    HomePage --> Card
+    AboutPage --> Card
+    InterestsPage --> Card
+    FuturePage --> Card
+    ContactPage --> Card
+    Card --> SectionHeading
+    Card --> Icon
+
+    HomePage --> Dictionaries
+    AboutPage --> Dictionaries
+    InterestsPage --> Dictionaries
+    FuturePage --> Dictionaries
+    ContactPage --> Dictionaries
+    Dictionaries -. "selected by" .-> LanguageProvider
+
+    ContactPage --> ContactForm
+    ContactForm --> ContactRoute
+    ContactRoute --> WAHAClient

@@ -1,0 +1,35 @@
+%% Sequence diagram — Contact form submission via WAHA (self-hosted WhatsApp HTTP API)
+%% Pseudo-level: the WAHA call is the only server-side/dynamic flow in the site.
+sequenceDiagram
+    actor Visitor
+    participant Form as ContactForm (client component)
+    participant Route as /api/contact (Next.js API route)
+    participant Env as Server env (WAHA_API_KEY, WAHA_API_URL, WAHA_SESSION_NAME)
+    participant WAHA as Author's self-hosted WAHA instance
+
+    Visitor->>Form: Fill name, phone, message, submit
+    Form->>Form: Client-side validation (required fields, phone format)
+    Form->>Route: POST { name, phone, message } (HTTPS, no secrets in payload)
+    activate Route
+    Route->>Route: Validate & sanitize body server-side
+    alt validation fails
+        Route-->>Form: 400 + error reason
+        Form-->>Visitor: Show inline error, keep entered values
+    else validation passes
+        Route->>Env: Read WAHA_API_KEY / WAHA_API_URL / WAHA_SESSION_NAME
+        Route->>WAHA: POST {WAHA_API_URL}/sendText (session=WAHA_SESSION_NAME, key=WAHA_API_KEY, text=composed message)
+        activate WAHA
+        alt WAHA accepts
+            WAHA-->>Route: 2xx (message queued/sent)
+            Route-->>Form: 200 success
+            Form-->>Visitor: Show "message sent" confirmation
+        else WAHA/network error
+            WAHA-->>Route: error / timeout
+            Route-->>Form: 502 + generic error (no WAHA internals leaked)
+            Form-->>Visitor: Show "try again later" + fallback to email/Telegram
+        end
+        deactivate WAHA
+    end
+    deactivate Route
+
+    note over Route,Env: WAHA_API_KEY never reaches the browser — read only<br/>inside the API route, which runs server-side only.
