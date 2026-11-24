@@ -65,7 +65,13 @@ not a replacement for it.
 - `docs/design-tokens.md` + `docs/wireframes/*.svg` — design system and low-fi wireframes.
 - `.claude/agents/{architect,designer,implementer,code-reviewer}.md` — role definitions for this
   project's agent harness; each names the skills it should invoke and the guardrails above.
-- `infra/render.yaml` — Render.com deployment blueprint (to be added at implementation time).
+- `infra/render.yaml` — Render.com deployment blueprint. The site is live at
+  `https://nursultan-nurgali.onrender.com`.
+- `docs/testing.md` — requirements traceability table + the executed test log; record new tests and
+  defects here, not just in commit messages.
+- `docs/security-review.md` — HTTPS, input validation, secret handling, auth, graceful failure,
+  source backup. Re-check it if any of those areas change.
+- `.github/workflows/ci.yml` — lint/Biome/typecheck/test/build on every push/PR to `main`.
 
 ## Working conventions
 
