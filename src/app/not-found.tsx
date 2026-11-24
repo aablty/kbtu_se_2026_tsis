@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { getLocale } from "@/lib/locale";
 import { getDictionary } from "@/content";
+import { getLocale } from "@/lib/locale";
 
 export default async function NotFound() {
   const dictionary = getDictionary(await getLocale());

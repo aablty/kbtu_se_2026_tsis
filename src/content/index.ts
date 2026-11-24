@@ -1,6 +1,6 @@
 import en from "./en";
-import ru from "./ru";
 import kk from "./kk";
+import ru from "./ru";
 import type { Dictionary, Locale } from "./types";
 
 export const dictionaries: Record<Locale, Dictionary> = { en, ru, kk };

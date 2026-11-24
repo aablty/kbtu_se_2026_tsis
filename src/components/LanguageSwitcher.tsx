@@ -1,6 +1,6 @@
 "use client";
 
-import { SUPPORTED_LOCALES, type Locale } from "@/content/types";
+import { type Locale, SUPPORTED_LOCALES } from "@/content/types";
 import { useLanguage } from "@/context/LanguageProvider";
 
 const LABELS: Record<Locale, string> = { kk: "KK", ru: "RU", en: "EN" };
@@ -9,7 +9,8 @@ export function LanguageSwitcher({ ariaLabel }: { ariaLabel: string }) {
   const { locale, setLocale } = useLanguage();
 
   return (
-    <div className="lang-switcher" role="group" aria-label={ariaLabel}>
+    <fieldset className="lang-switcher" aria-label={ariaLabel}>
+      <legend className="sr-only">{ariaLabel}</legend>
       {SUPPORTED_LOCALES.map((code) => (
         <button
           key={code}
@@ -21,6 +22,6 @@ export function LanguageSwitcher({ ariaLabel }: { ariaLabel: string }) {
           {LABELS[code]}
         </button>
       ))}
-    </div>
+    </fieldset>
   );
 }

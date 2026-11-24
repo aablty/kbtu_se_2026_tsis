@@ -51,6 +51,37 @@ body {
   height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+/* Single-page hash navigation: offset anchored sections so the sticky header never covers them. */
+section[id] {
+  scroll-margin-top: 96px;
+}
+
+@media (max-width: 767px) {
+  section[id] {
+    scroll-margin-top: 80px;
+  }
+}
+
+/* Respect "reduce motion" everywhere at once: smooth scroll, reveal animation, hover transitions. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    /* biome-ignore lint/complexity/noImportantStyles: must out-specificity every component's own transition/animation rule to actually disable motion */
+    animation-duration: 0.001ms !important;
+    /* biome-ignore lint/complexity/noImportantStyles: must out-specificity every component's own transition/animation rule to actually disable motion */
+    animation-iteration-count: 1 !important;
+    /* biome-ignore lint/complexity/noImportantStyles: must out-specificity every component's own transition/animation rule to actually disable motion */
+    transition-duration: 0.001ms !important;
+    /* biome-ignore lint/complexity/noImportantStyles: must out-specificity every component's own transition/animation rule to actually disable motion */
+    scroll-behavior: auto !important;
+  }
+}
+
 body {
   background: var(--bg);
   color: var(--text-primary);
@@ -125,11 +156,28 @@ select:focus-visible {
   border-radius: 0;
   box-shadow: 0 1px 3px var(--shadow);
   padding: var(--space-6);
+  transition: border-color 0.2s ease;
 }
 
 .card:hover,
 .card:focus-within {
   border-color: var(--border-strong);
+}
+
+/* Scroll-reveal for every section below the fold (design-tokens.md §7). JS progressively
+   enhances this — see components/Reveal.tsx, which also skips the animation outright when
+   prefers-reduced-motion is set. The sticky header/hero above stay un-animated on purpose. */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .section-heading {
@@ -141,7 +189,7 @@ select:focus-visible {
   flex-shrink: 0;
 }
 
-/* Site header */
+/* Site header — sticky, since this is now a single long page navigated by section anchors */
 .site-header {
   display: flex;
   align-items: center;
@@ -150,7 +198,9 @@ select:focus-visible {
   padding: var(--space-4) var(--space-6);
   border-bottom: 1px solid var(--border);
   background: var(--surface);
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 40;
 }
 
 .site-header__logo {
@@ -172,6 +222,7 @@ select:focus-visible {
   text-decoration: none;
   color: var(--text-secondary);
   font-size: var(--text-small);
+  transition: color 0.2s ease;
 }
 
 .site-header__nav a:hover,
@@ -198,8 +249,13 @@ select:focus-visible {
 }
 
 .lang-switcher {
+  /* Native <fieldset> (useSemanticElements over role="group") ships its own border/padding/margin —
+     reset those so it still lays out as the flat single-border toggle row the design calls for. */
   display: flex;
   border: 1px solid var(--border);
+  margin: 0;
+  padding: 0;
+  min-width: 0;
 }
 
 .lang-switcher__option {
@@ -209,6 +265,7 @@ select:focus-visible {
   font-size: var(--text-small);
   color: var(--text-secondary);
   cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .lang-switcher__option[aria-pressed="true"] {
@@ -224,6 +281,14 @@ select:focus-visible {
   cursor: pointer;
   display: flex;
   align-items: center;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
 }
 
 .mobile-nav {
@@ -249,6 +314,18 @@ select:focus-visible {
   box-shadow: 0 1px 3px var(--shadow);
   min-width: 180px;
   z-index: 50;
+  animation: menu-in 0.15s ease-out;
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .mobile-nav__menu ul {
@@ -257,6 +334,7 @@ select:focus-visible {
   padding: var(--space-2) 0;
 }
 
+/* biome-ignore lint/style/noDescendingSpecificity: unrelated to .site-header__nav above — a different nav component, no shared elements */
 .mobile-nav__menu a {
   display: block;
   padding: var(--space-2) var(--space-4);
@@ -331,6 +409,18 @@ select:focus-visible {
   gap: var(--space-4);
 }
 
+/* Vertical rhythm between the single page's stacked sections */
+.page-section {
+  padding-top: var(--space-16);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 767px) {
+  .page-section {
+    padding-top: var(--space-8);
+  }
+}
+
 .hero {
   display: flex;
   gap: var(--space-8);
@@ -365,6 +455,16 @@ select:focus-visible {
   text-decoration: none;
   font-size: var(--text-body);
   cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background: var(--accent);
+  color: var(--surface);
+  border-color: var(--accent);
 }
 
 .btn--primary {

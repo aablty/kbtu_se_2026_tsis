@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import type { FormEvent } from "react";
+import { useState } from "react";
 import type { CallbackMethod, Dictionary } from "@/content/types";
 
 const CALLBACK_METHODS: CallbackMethod[] = ["whatsapp", "telegram", "email"];

@@ -79,9 +79,5 @@ export interface Dictionary {
   };
   meta: {
     home: { title: string; description: string };
-    about: { title: string; description: string };
-    interests: { title: string; description: string };
-    futurePlans: { title: string; description: string };
-    contact: { title: string; description: string };
   };
 }

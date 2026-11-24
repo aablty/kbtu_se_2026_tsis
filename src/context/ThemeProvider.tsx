@@ -22,6 +22,7 @@ export function ThemeProvider({
   const setTheme = useCallback((next: Theme) => {
     setThemeState(next);
     document.documentElement.setAttribute("data-theme", next);
+    // biome-ignore lint/suspicious/noDocumentCookie: Cookie Store API lacks Safari support (NFR-08); value is a fixed enum token, not user input
     document.cookie = `${THEME_COOKIE}=${next}; path=/; max-age=31536000; SameSite=Lax`;
     window.localStorage.setItem(THEME_COOKIE, next);
   }, []);

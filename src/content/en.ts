@@ -21,8 +21,7 @@ const en: Dictionary = {
     name: "Nursultan Nurgali",
     tagline: "KBTU — B.Sc. Information Systems",
     summaryLabel: "Interests",
-    summary:
-      "Computer games, software engineering, system design, building small everyday apps.",
+    summary: "Computer games, software engineering, system design, building small everyday apps.",
     ctaAbout: "About Me",
     ctaContact: "Contact",
     scrollCue: "Scroll down",
@@ -103,7 +102,8 @@ const en: Dictionary = {
     submit: "Send",
     sending: "Sending…",
     successMessage: "Message sent — thank you, I'll get back to you soon.",
-    errorMessage: "Something went wrong sending your message. Please try again later, or use the email/Telegram above.",
+    errorMessage:
+      "Something went wrong sending your message. Please try again later, or use the email/Telegram above.",
     validationError: "Please fill in all fields with a value matching your chosen callback method.",
     helperNote:
       "Submitted server-side via Telegram; your chosen callback method and value are only seen by the author.",
@@ -116,23 +116,7 @@ const en: Dictionary = {
     home: {
       title: "Nursultan Nurgali — Personal site",
       description:
-        "Personal site of Nursultan Nurgali, B.Sc. Information Systems student at KBTU.",
-    },
-    about: {
-      title: "About — Nursultan Nurgali",
-      description: "Education background of Nursultan Nurgali: KBTU, major, and achievements.",
-    },
-    interests: {
-      title: "Interests — Nursultan Nurgali",
-      description: "Interests, activities, and completed subjects of Nursultan Nurgali.",
-    },
-    futurePlans: {
-      title: "Future Plans — Nursultan Nurgali",
-      description: "Future plans of Nursultan Nurgali.",
-    },
-    contact: {
-      title: "Contact — Nursultan Nurgali",
-      description: "Ways to contact Nursultan Nurgali: email, Telegram, or a contact form.",
+        "Personal site of Nursultan Nurgali, B.Sc. Information Systems student at KBTU — about, interests & activities, future plans, and contact, all on one page.",
     },
   },
 };

@@ -1,29 +1,28 @@
-import Link from "next/link";
 import type { Dictionary } from "@/content/types";
 import { LanguageSwitcher } from "./LanguageSwitcher";
-import { ThemeToggle } from "./ThemeToggle";
 import { MobileNav } from "./MobileNav";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Header({ dictionary }: { dictionary: Dictionary }) {
   const { nav, common } = dictionary;
   const links: Array<[string, string]> = [
-    ["/", nav.home],
-    ["/about", nav.about],
-    ["/interests", nav.interests],
-    ["/future-plans", nav.future],
-    ["/contact", nav.contact],
+    ["#home", nav.home],
+    ["#about", nav.about],
+    ["#interests", nav.interests],
+    ["#future-plans", nav.future],
+    ["#contact", nav.contact],
   ];
 
   return (
     <header className="site-header">
-      <Link href="/" className="site-header__logo">
+      <a href="#home" className="site-header__logo">
         N.N.
-      </Link>
+      </a>
       <nav className="site-header__nav" aria-label={nav.home}>
         <ul>
           {links.map(([href, label]) => (
             <li key={href}>
-              <Link href={href}>{label}</Link>
+              <a href={href}>{label}</a>
             </li>
           ))}
         </ul>

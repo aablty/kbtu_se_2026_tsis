@@ -94,3 +94,21 @@ Overall: the core palette passes AA; the one real risk is `--accent` and `--text
 sizes, mitigated by the size/usage rules above rather than by lightening the palette further (which
 would weaken the "technical" minimal look). Re-verify with an automated contrast checker once exact
 hex values are finalized against the real Oxanium font metrics in implementation.
+
+## 7. Animation & motion (added at implementation, 2026-11-24)
+
+- **Scroll-reveal**: every section below the fold on the single page fades + slides up
+  (`opacity 0 → 1`, `translateY(16px) → 0`, `0.5s ease-out`) the first time it's ~15% in view
+  (IntersectionObserver `threshold: 0.15`), implemented once in a shared `Reveal` wrapper rather than
+  per-component. The `#home` hero is exempt — it's the first paint and must never depend on JS or
+  scrolling to appear.
+- **Hover/focus polish**: cards, buttons, nav links, the theme toggle and the language switcher all
+  get a short (`0.2s ease`) color/border-color transition on hover/focus rather than an instant
+  state change. The primary/secondary CTA buttons invert to the accent color on hover/focus.
+  Nothing animates `box-shadow`/size — only color, border-color and opacity/transform, per the flat
+  "technical" card rule (no elevation changes).
+- **Reduced motion**: handled once, globally — a single `@media (prefers-reduced-motion: reduce)`
+  block collapses every transition/animation duration to ~0 and forces `scroll-behavior: auto`.
+  Nothing else in the codebase needs its own reduced-motion branch.
+- **Sticky header**: the header is `position: sticky` so nav/language/theme controls stay reachable
+  on what is now a single, much longer scrollable page (see architecture.md §1/§7, Decision 4).

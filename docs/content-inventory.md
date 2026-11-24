@@ -27,7 +27,8 @@ yet ready in any language and will be filled in before implementation.
 
 | Asset | Source / Owner | License / Permission | Status |
 |-------|-----------------|------------------------|--------|
-| Portrait photo | Taken by / of the author (self) | Owned by author — no third-party rights involved | Ready, kept out of the repo for now (author's choice) — to be added at implementation time |
+| Portrait photo | Taken by / of the author (self) | Owned by author — no third-party rights involved | Ready — committed at `public/portrait.jpg` |
+| Favicon / "N" monogram logo | Original design for this project, generated via `scripts/generate-favicon.mjs` | Owned by author — no third-party rights involved | Ready — `src/app/favicon.ico` |
 | Icon set | [Lucide](https://lucide.dev) icon library | ISC license (free, attribution not required but will be credited in footer) | Ready — library chosen |
 | Typeface | Google Fonts — Oxanium (headings/display) | SIL Open Font License (OFL) — free for commercial/personal use | Ready — chosen, but Latin/Latin-ext only (no Cyrillic) |
 | Typeface fallback | Google Fonts — Exo 2 (Cyrillic/Kazakh fallback for kk/ru text; its Glyphs & languages list explicitly includes "Kazakh", confirmed 2026-11-24) | SIL Open Font License (OFL) | Ready — `font-family: 'Oxanium', 'Exo 2', sans-serif;` |

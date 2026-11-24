@@ -1,9 +1,9 @@
 "use client";
 
-import { createContext, useCallback, useContext, useState } from "react";
 import { useRouter } from "next/navigation";
-import { LOCALE_COOKIE } from "@/lib/cookie-names";
+import { createContext, useCallback, useContext, useState } from "react";
 import type { Locale } from "@/content/types";
+import { LOCALE_COOKIE } from "@/lib/cookie-names";
 
 interface LanguageContextValue {
   locale: Locale;
@@ -25,6 +25,7 @@ export function LanguageProvider({
   const setLocale = useCallback(
     (next: Locale) => {
       setLocaleState(next);
+      // biome-ignore lint/suspicious/noDocumentCookie: Cookie Store API lacks Safari support (NFR-08); value is a fixed enum token, not user input
       document.cookie = `${LOCALE_COOKIE}=${next}; path=/; max-age=31536000; SameSite=Lax`;
       window.localStorage.setItem(LOCALE_COOKIE, next);
       router.refresh();

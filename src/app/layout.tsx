@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Oxanium, Exo_2 } from "next/font/google";
-import { getLocale, getTheme } from "@/lib/locale";
+import { Exo_2, Oxanium } from "next/font/google";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
 import { getDictionary } from "@/content";
 import { LanguageProvider } from "@/context/LanguageProvider";
 import { ThemeProvider } from "@/context/ThemeProvider";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { getLocale, getTheme } from "@/lib/locale";
 import "./globals.css";
 
 const oxanium = Oxanium({
@@ -35,12 +35,8 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   const dictionary = getDictionary(locale);
 
   return (
-    <html
-      lang={locale}
-      data-theme={theme}
-      className={`${oxanium.variable} ${exo2.variable}`}
-    >
-      <body className="min-h-full flex flex-col">
+    <html lang={locale} data-theme={theme} className={`${oxanium.variable} ${exo2.variable}`}>
+      <body className="flex min-h-full flex-col">
         <LanguageProvider initialLocale={locale}>
           <ThemeProvider initialTheme={theme}>
             <a href="#main-content" className="skip-link">

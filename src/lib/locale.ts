@@ -1,6 +1,6 @@
 import "server-only";
 import { cookies } from "next/headers";
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES, type Locale } from "@/content/types";
+import { DEFAULT_LOCALE, type Locale, SUPPORTED_LOCALES } from "@/content/types";
 import { LOCALE_COOKIE, THEME_COOKIE, type Theme } from "./cookie-names";
 
 function isLocale(value: string | undefined): value is Locale {

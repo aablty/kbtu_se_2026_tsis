@@ -37,7 +37,10 @@ export async function POST(request: Request) {
   if (!isCallbackMethod(callbackMethod)) {
     return NextResponse.json({ error: "invalid_callback_method" }, { status: 400 });
   }
-  if (typeof callbackValue !== "string" || !VALUE_PATTERNS[callbackMethod].test(callbackValue.trim())) {
+  if (
+    typeof callbackValue !== "string" ||
+    !VALUE_PATTERNS[callbackMethod].test(callbackValue.trim())
+  ) {
     return NextResponse.json({ error: "invalid_callback_value" }, { status: 400 });
   }
 
