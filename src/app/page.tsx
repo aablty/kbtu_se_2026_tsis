@@ -5,6 +5,7 @@ import {
   Compass,
   Dumbbell,
   Folder,
+  FolderGit2,
   Gamepad2,
   GitBranch,
   GraduationCap,
@@ -34,7 +35,7 @@ const ACTIVITY_ICONS: LucideIcon[] = [Code, Dumbbell, Gamepad2, Folder];
 
 export default async function HomePage() {
   const dictionary = getDictionary(await getLocale());
-  const { home, about, interests, futurePlans, contact } = dictionary;
+  const { home, about, interests, projects, futurePlans, contact } = dictionary;
 
   return (
     <>
@@ -131,6 +132,21 @@ export default async function HomePage() {
                 </Card>
               ))}
             </div>
+          </div>
+        </section>
+      </Reveal>
+
+      <Reveal>
+        <section id="projects" className="page-section">
+          <SectionHeading as="h2">{projects.title}</SectionHeading>
+          <div className="card-grid">
+            {projects.items.map((item) => (
+              <Card key={item.title}>
+                <Icon icon={FolderGit2} />
+                <h3 className="mt-3">{item.title}</h3>
+                <p className="text-small text-[var(--text-secondary)]">{item.description}</p>
+              </Card>
+            ))}
           </div>
         </section>
       </Reveal>

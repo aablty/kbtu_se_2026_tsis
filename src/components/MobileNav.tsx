@@ -14,6 +14,7 @@ export function MobileNav({
     ["#home", nav.home],
     ["#about", nav.about],
     ["#interests", nav.interests],
+    ["#projects", nav.projects],
     ["#future-plans", nav.future],
     ["#contact", nav.contact],
   ];

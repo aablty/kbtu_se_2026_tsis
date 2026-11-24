@@ -5,6 +5,7 @@ const en: Dictionary = {
     home: "Home",
     about: "About",
     interests: "Interests",
+    projects: "Projects",
     future: "Future",
     contact: "Contact",
   },
@@ -67,6 +68,26 @@ const en: Dictionary = {
       "Web Development",
     ],
   },
+  projects: {
+    title: "Projects & Skills",
+    items: [
+      {
+        title: "Telegram automation bots",
+        description:
+          "Designed Telegram automation bots for business lead-generation and CRM workflows, plus Web3 mini-app integrations.",
+      },
+      {
+        title: "Event-driven backend services",
+        description:
+          "Built event-driven microservice backends processing large-scale analytics and reporting pipelines for a SaaS platform.",
+      },
+      {
+        title: "Discord community bots",
+        description:
+          "Developed Discord community bots with a virtual economy, moderation, and mini-game systems for large server communities.",
+      },
+    ],
+  },
   futurePlans: {
     title: "Future Plans",
     text: "Already has professional software engineering experience; currently interviewing for full-time roles.",
@@ -111,12 +132,14 @@ const en: Dictionary = {
   footer: {
     iconsCredit: "Icons by Lucide",
     rights: "All rights reserved.",
+    privacy:
+      "Privacy: this site only stores your language/theme choice (locally, in your browser). The contact form is sent privately to the author via Telegram and is not stored on this site, logged, or shared with anyone else.",
   },
   meta: {
     home: {
       title: "Nursultan Nurgali — Personal site",
       description:
-        "Personal site of Nursultan Nurgali, B.Sc. Information Systems student at KBTU — about, interests & activities, future plans, and contact, all on one page.",
+        "Personal site of Nursultan Nurgali, B.Sc. Information Systems student at KBTU — about, interests & activities, projects, future plans, and contact, all on one page.",
     },
   },
 };

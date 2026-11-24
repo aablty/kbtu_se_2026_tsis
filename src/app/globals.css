@@ -389,6 +389,12 @@ select:focus-visible {
   color: var(--text-muted);
 }
 
+.site-footer__privacy {
+  font-size: var(--text-small);
+  color: var(--text-muted);
+  max-width: 60ch;
+}
+
 /* Generic layout helpers used by pages */
 .card-grid {
   display: grid;

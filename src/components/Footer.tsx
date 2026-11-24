@@ -16,6 +16,7 @@ export function Footer({ dictionary }: { dictionary: Dictionary }) {
       <p className="site-footer__meta">
         {footer.iconsCredit} · © {new Date().getFullYear()} Nursultan Nurgali. {footer.rights}
       </p>
+      <p className="site-footer__privacy">{footer.privacy}</p>
     </footer>
   );
 }

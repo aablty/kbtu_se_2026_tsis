@@ -9,6 +9,7 @@ export function Header({ dictionary }: { dictionary: Dictionary }) {
     ["#home", nav.home],
     ["#about", nav.about],
     ["#interests", nav.interests],
+    ["#projects", nav.projects],
     ["#future-plans", nav.future],
     ["#contact", nav.contact],
   ];

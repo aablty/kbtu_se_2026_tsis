@@ -9,6 +9,7 @@ export interface Dictionary {
     home: string;
     about: string;
     interests: string;
+    projects: string;
     future: string;
     contact: string;
   };
@@ -46,6 +47,10 @@ export interface Dictionary {
     subjectsHeading: string;
     subjects: string[];
   };
+  projects: {
+    title: string;
+    items: Array<{ title: string; description: string }>;
+  };
   futurePlans: {
     title: string;
     text: string;
@@ -76,6 +81,7 @@ export interface Dictionary {
   footer: {
     iconsCredit: string;
     rights: string;
+    privacy: string;
   };
   meta: {
     home: { title: string; description: string };
