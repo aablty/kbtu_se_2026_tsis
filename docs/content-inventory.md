@@ -27,7 +27,7 @@ yet ready in any language and will be filled in before implementation.
 
 | Asset | Source / Owner | License / Permission | Status |
 |-------|-----------------|------------------------|--------|
-| Portrait photo (`assets/images/portrait.jpg`) | Taken by / of the author (self) | Owned by author — no third-party rights involved | Ready |
+| Portrait photo | Taken by / of the author (self) | Owned by author — no third-party rights involved | Ready, kept out of the repo for now (author's choice) — to be added at implementation time |
 | Icon set | [Lucide](https://lucide.dev) icon library | ISC license (free, attribution not required but will be credited in footer) | Ready — library chosen |
 | Typeface | Google Fonts (specific family TBD by author) | SIL Open Font License (OFL) — free for commercial/personal use | **TODO** — author to name the exact font family before implementation |
 | Stock/hero images | None chosen yet | N/A | **TODO** — author said "later"; placeholder graphics (e.g. CSS gradient or the author's own photo) will be used until a specific, properly licensed image is chosen. No stock image goes in without a recorded source URL + license here first |

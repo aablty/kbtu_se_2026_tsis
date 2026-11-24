@@ -122,8 +122,27 @@ As the **author**, I want **private photos behind authentication**, so that **ca
 | 9 | FR-07 — graceful handling of missing translations | Iteration 2 |
 | 10 | NFR-08 — cross-browser check | Iteration 2 |
 
-## 10. Teacher Supervision Checkpoint Log
+## 10. Technical stack & infrastructure decisions (author-mandated, 2026-11-24)
+
+These are fixed constraints for the design (Task #03) and implementation tasks, not open choices:
+
+- **Framework**: Next.js, with SEO/GEO support (sitemap.xml, robots.txt, structured metadata).
+- **Styling**: Tailwind CSS as the base layer, with custom CSS for a hand-built UI kit on top.
+- **Design system**: Lucide icons (already logged in content-inventory.md §2), Oxanium font, 0 border-radius
+  on cards, minimal/flat cards with subtle shadows, dark/light theme support, minimalistic "technical" visual
+  tone.
+- **Contact form**: server-side integration with the author's self-hosted WAHA (WhatsApp HTTP API) instance,
+  using `WAHA_API_KEY`, `WAHA_API_URL`, `WAHA_SESSION_NAME` env vars — sends the contact message (incl. a
+  phone field) via WhatsApp rather than email. Supersedes the "TBD" note on the contact form in
+  content-inventory.md §4.
+- **Deployment**: Render.com via an Infrastructure-as-Code blueprint at `infra/render.yaml` — Frankfurt
+  region, service name `nursultan-nurgali`. Replaces the earlier InfinityFree-only assumption in §4
+  (C-01); InfinityFree remains an allowed fallback per the course brief, but Render.com is the author's
+  chosen target.
+
+## 11. Teacher Supervision Checkpoint Log
 
 | Date | Checkpoint | Change made |
 |------|------------|-------------|
 | 2026-11-24 | Baseline drafted | Initial FR/NFR/user stories/backlog created from TSIS #01 brief (Task #01: Requirements baseline and Agile plan) |
+| 2026-11-24 | Tech stack decided | Author specified Next.js, Tailwind+custom UI kit, Lucide/Oxanium design system, WAHA-based contact form, Render.com deployment blueprint (§10) ahead of Task #03 design |
