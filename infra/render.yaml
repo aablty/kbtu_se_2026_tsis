@@ -5,6 +5,7 @@ services:
     region: frankfurt
     plan: free
     branch: main
+    autoDeployTrigger: "checksPass"
     buildCommand: bun install && bun run build
     startCommand: bun run start
     envVars:
