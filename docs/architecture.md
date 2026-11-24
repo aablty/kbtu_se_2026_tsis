@@ -68,6 +68,12 @@ page falls back to omitting that section rather than rendering blank/broken cont
   server environment variables and calls the author's self-hosted WAHA instance. These env vars are
   never exposed to the client bundle (no `NEXT_PUBLIC_` prefix, never passed as props/JSON to the
   browser), so the contact flow is the only place secrets or server-only logic exist.
+- **Contact-form callback method**: the form does not hard-code "phone" as the only way back. It has a
+  `callbackMethod` selector (`whatsapp` | `telegram` | `email`) plus one `callbackValue` field whose
+  label/placeholder and format validation adapt to the chosen method. The API route validates
+  `callbackMethod` against that fixed enum and includes the visitor's chosen method + value in the
+  WhatsApp message it sends to the author via WAHA — WAHA remains the one transport (the author's own
+  inbox), the selector only changes how the author is told to call the visitor back.
 
 ## 6. Design decisions & trade-offs
 
@@ -86,8 +92,8 @@ typing, slightly more boilerplate than a server action invoked directly from the
 it gives a stable, explicit HTTP contract (method, status codes, JSON body) that's easy to reason
 about for a security-sensitive, third-party-calling endpoint, and it keeps the WAHA client helper
 unambiguously server-only (a server action is also server-only, but the route makes the trust
-boundary visible in the URL/network tab, which matters here since the form also collects a phone
-number).
+boundary visible in the URL/network tab, which matters here since the form also collects a
+visitor-chosen callback value — a phone number, Telegram handle, or email address).
 
 **Decision 3 — Client-side language switch vs. localized routes (`/en`, `/ru`, `/kk`).**
 Chosen: client-side switch via `LanguageProvider`, no locale-prefixed routes. Trade-off: this gives

@@ -7,17 +7,17 @@ sequenceDiagram
     participant Env as Server env (WAHA_API_KEY, WAHA_API_URL, WAHA_SESSION_NAME)
     participant WAHA as Author's self-hosted WAHA instance
 
-    Visitor->>Form: Fill name, phone, message, submit
-    Form->>Form: Client-side validation (required fields, phone format)
-    Form->>Route: POST { name, phone, message } (HTTPS, no secrets in payload)
+    Visitor->>Form: Fill name, message, pick callback method (WhatsApp/phone, Telegram, or Email) from a selector, enter matching contact value, submit
+    Form->>Form: Client-side validation (required fields; value format checked against the selected method)
+    Form->>Route: POST { name, callbackMethod, callbackValue, message } (HTTPS, no secrets in payload)
     activate Route
-    Route->>Route: Validate & sanitize body server-side
+    Route->>Route: Validate & sanitize body server-side (callbackMethod is an enum: whatsapp | telegram | email)
     alt validation fails
         Route-->>Form: 400 + error reason
         Form-->>Visitor: Show inline error, keep entered values
     else validation passes
         Route->>Env: Read WAHA_API_KEY / WAHA_API_URL / WAHA_SESSION_NAME
-        Route->>WAHA: POST {WAHA_API_URL}/sendText (session=WAHA_SESSION_NAME, key=WAHA_API_KEY, text=composed message)
+        Route->>WAHA: POST {WAHA_API_URL}/sendText (session=WAHA_SESSION_NAME, key=WAHA_API_KEY, text=composed message incl. name, chosen callback method + value, and the visitor's message)
         activate WAHA
         alt WAHA accepts
             WAHA-->>Route: 2xx (message queued/sent)

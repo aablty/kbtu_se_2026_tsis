@@ -98,6 +98,7 @@ As a **recruiter**, I want to **see a list of achievements and extracurricular a
 ### US-05 — Contact the author
 As a **visitor**, I want to **find a way to contact the author**, so that **I can follow up**.
 - **AC-06**: Given the visitor is on the Contact section, when they view it, then a contact method is shown that does not include any field the author marked private in the content inventory.
+- **AC-06b**: Given the visitor opens the contact form, when they pick a callback method from the selector (WhatsApp/phone, Telegram, or Email), then the value field's label and validation adapt to that choice, so the visitor isn't forced to give a phone number if they'd rather be reached another way.
 
 ### US-06 — Accessible reading experience
 As a **visitor using a screen reader**, I want to **navigate headings and images with alt text**, so that **I can access all content non-visually**.
@@ -146,3 +147,4 @@ These are fixed constraints for the design (Task #03) and implementation tasks, 
 |------|------------|-------------|
 | 2026-11-24 | Baseline drafted | Initial FR/NFR/user stories/backlog created from TSIS #01 brief (Task #01: Requirements baseline and Agile plan) |
 | 2026-11-24 | Tech stack decided | Author specified Next.js, Tailwind+custom UI kit, Lucide/Oxanium design system, WAHA-based contact form, Render.com deployment blueprint (§10) ahead of Task #03 design |
+| 2026-11-24 | Contact-form correction | Author asked that the contact form not assume phone as the only callback channel; added a callback-method selector (WhatsApp/Telegram/Email) with AC-06b, updated architecture.md, the sequence diagram, both contact wireframes, and content-inventory.md §4 |
