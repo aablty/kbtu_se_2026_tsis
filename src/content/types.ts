@@ -15,6 +15,7 @@ export interface Dictionary {
   };
   common: {
     skipToContent: string;
+    mainNav: string;
     languageLabel: string;
     themeToLight: string;
     themeToDark: string;

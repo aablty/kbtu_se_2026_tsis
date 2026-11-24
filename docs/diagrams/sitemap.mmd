@@ -1,11 +1,12 @@
 %% Sitemap / Information Architecture — Nursultan Nurgali personal website
-%% Pseudo-level: one real route, five in-page anchor sections, navigation relationships only.
+%% Pseudo-level: one real route, six in-page anchor sections, navigation relationships only.
 graph TD
-    Root["/ — single page: sticky Header (logo/nav, LanguageSwitcher, ThemeToggle) · five stacked sections · Footer (email, Telegram, Lucide credit)"]
+    Root["/ — single page: sticky Header (logo/nav, LanguageSwitcher, ThemeToggle) · six stacked sections · Footer (email, Telegram, Lucide credit, privacy statement)"]
 
     Home["#home — Home (hero/intro, portrait, short summary, nav into the rest of the page)"]
     About["#about — About & Education (KBTU major, previous-school note, gold medal)"]
     Interests["#interests — Interests & Activities (interests, activities, completed subjects)"]
+    Projects["#projects — Projects & Skills (detail-free evidence-of-skills blurbs, no employer names)"]
     Future["#future-plans — Future Plans"]
     Contact["#contact — Contact (email, Telegram, contact form sent via Telegram Bot API)"]
     NotFound["/not-found — 404 (any path other than / or its hash)"]
@@ -13,16 +14,19 @@ graph TD
     Root --> Home
     Root --> About
     Root --> Interests
+    Root --> Projects
     Root --> Future
     Root --> Contact
     Root -.-> NotFound
 
     Home -- anchor link, smooth scroll --> About
     Home -- anchor link, smooth scroll --> Interests
+    Home -- anchor link, smooth scroll --> Projects
     Home -- anchor link, smooth scroll --> Future
     Home -- anchor link, smooth scroll --> Contact
     About -- anchor link, smooth scroll --> Interests
-    Interests -- anchor link, smooth scroll --> Future
+    Interests -- anchor link, smooth scroll --> Projects
+    Projects -- anchor link, smooth scroll --> Future
     Future -- anchor link, smooth scroll --> Contact
     Contact -- anchor link, smooth scroll --> Home
 
@@ -30,4 +34,5 @@ graph TD
     %% ThemeToggle stay reachable while scrolling anywhere (satisfies FR-04).
     %% No auth/restricted area exists anywhere on the page (author decision).
     %% Was five separate routes in Iteration 1; collapsed into one page with hash anchors — see
-    %% docs/architecture.md Decision 4.
+    %% docs/architecture.md Decision 4. #projects added 2026-11-25 to close a required-content gap
+    %% (FR-11); footer privacy statement (FR-12) added the same day.

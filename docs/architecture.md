@@ -18,11 +18,13 @@ wireframes in `docs/wireframes/*.svg` — only the container changed from a rout
 | `#home` | Hero/intro, portrait, short summary, nav into the rest of the page |
 | `#about` | KBTU, major, class years, previous-school note (no school name), gold medal |
 | `#interests` | Interests, activities, completed subjects |
+| `#projects` | Detail-free evidence-of-skills blurbs (no employer/client names) — added 2026-11-25, FR-11 |
 | `#future-plans` | Detail-free future-plans summary |
 | `#contact` | Email, Telegram, contact form sent via Telegram Bot API |
 
 A single root layout wraps the page with a sticky `Header` (nav + `LanguageSwitcher` + `ThemeToggle`)
-and a `Footer` (email, Telegram, Lucide attribution), so the language switch and theme toggle are
+and a `Footer` (email, Telegram, Lucide attribution, a short privacy statement — FR-12, added
+2026-11-25), so the language switch and theme toggle are
 reachable while scrolling anywhere on the page — satisfying FR-04. Every section is one click/tap
 away via the nav, which trivially keeps About/Contact within 2 clicks of Home (NFR-02). There is no
 authenticated/restricted area (author decision, logged in content-inventory §5); FR-09/NFR-05/US-07

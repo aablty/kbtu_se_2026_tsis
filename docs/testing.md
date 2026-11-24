@@ -35,8 +35,10 @@ Supporting FR/NFR coverage not already implied above:
 | NFR-03 (WCAG AA alt text, landmarks, focus visibility) | T09, T17 | **PASS** |
 | NFR-05 (HTTPS for anything credential-like — reinterpreted as "the whole site" since there's no auth) | T14 | **PASS** |
 | NFR-08 (renders correctly across browsers) | T16 | **PARTIAL** — see limitation noted in T16 |
+| FR-11 (Projects/evidence-of-skills, added 2026-11-25) | T19 | **PASS** |
+| FR-12 (on-site privacy statement, added 2026-11-25) | T20 | **PASS** |
 
-## 2. Test log (18 executed tests across all 9 required categories)
+## 2. Test log (20 executed tests across all 9 required categories)
 
 | ID | Category | Steps | Expected | Actual | Result |
 |---|---|---|---|---|---|
@@ -58,6 +60,8 @@ Supporting FR/NFR coverage not already implied above:
 | T16 | Browser compatibility | Rendered the site in the available automated browser (a Chromium-based engine, desktop and mobile emulation) | Renders correctly | Renders correctly in Chromium at both sizes | **PARTIAL** — Firefox and Safari were **not** independently tested in this session (no such engine available here). Risk is judged low: every CSS/JS feature used (CSS custom properties, `position: sticky`, `IntersectionObserver`, `scroll-behavior: smooth`, `<dialog>`-free native `<select>`) has had broad support in Firefox/Safari for several years, and NFR-08 names exactly those three engines — recommend the author do a real one-time check in Firefox and Safari (including iOS Safari for the mobile breakpoints) before final submission. |
 | T17 | Accessibility (keyboard) | Clicked into the page then pressed `Tab` once | Focus moves to the first form field with a visible `2px solid` accent focus ring (design-tokens.md §6) | Ring clearly visible in the screenshot | **PASS** |
 | T18 | Forms / security / error handling (automated) | `bun test` — 9 cases in `src/app/api/contact/route.test.ts`: empty name, empty message, unknown callback method, malformed WhatsApp number, malformed email, valid submission (asserts the exact Telegram request shape), Telegram-failure path (asserts no upstream detail or token leaks into the client response), unconfigured-secrets path (asserts `fetch` is never called), non-JSON body | All 9 pass | `9 pass / 0 fail / 24 expect() calls` (real `bun test` output, reproduced in CI) | **PASS** |
+| T19 | Content (FR-11) | After the 2026-11-25 content addition, re-fetched the live homepage and read it via `get_page_text` | A "Projects & Skills" section appears between Interests and Future Plans with 3 items, no employer/client names | Confirmed on the live site: "Telegram automation bots", "Event-driven backend services", "Discord community bots" — all detail-free | **PASS** |
+| T20 | Content / Privacy (FR-12) | Searched the live homepage's accessibility tree for the footer privacy text | A short, accurate privacy statement is present (not just referenced in internal docs) | Found: "Privacy: this site only stores your language/theme choice (locally, in your browser). The contact form is sent privately to the author via Telegram..." | **PASS** |
 
 ## 3. Defect found during testing
 

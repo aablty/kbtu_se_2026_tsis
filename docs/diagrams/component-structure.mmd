@@ -11,6 +11,7 @@ graph TD
         HomeSection["#home section — no Reveal (above the fold, always visible)"]
         AboutSection["#about section"]
         InterestsSection["#interests section"]
+        ProjectsSection["#projects section"]
         FutureSection["#future-plans section"]
         ContactSection["#contact section"]
     end
@@ -47,6 +48,7 @@ graph TD
     RootLayout --> HomeSection
     RootLayout --> AboutSection
     RootLayout --> InterestsSection
+    RootLayout --> ProjectsSection
     RootLayout --> FutureSection
     RootLayout --> ContactSection
 
@@ -58,12 +60,14 @@ graph TD
 
     AboutSection --> Reveal
     InterestsSection --> Reveal
+    ProjectsSection --> Reveal
     FutureSection --> Reveal
     ContactSection --> Reveal
 
     HomeSection --> Card
     AboutSection --> Card
     InterestsSection --> Card
+    ProjectsSection --> Card
     FutureSection --> Card
     ContactSection --> Card
     Card --> SectionHeading
@@ -72,6 +76,7 @@ graph TD
     HomeSection --> Dictionaries
     AboutSection --> Dictionaries
     InterestsSection --> Dictionaries
+    ProjectsSection --> Dictionaries
     FutureSection --> Dictionaries
     ContactSection --> Dictionaries
     Dictionaries -. "selected by" .-> LanguageProvider

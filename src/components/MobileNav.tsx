@@ -3,21 +3,15 @@
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import type { Dictionary } from "@/content/types";
+import { getNavLinks } from "@/lib/nav";
 
 export function MobileNav({
   nav,
 }: {
-  nav: Dictionary["nav"] & { openMenu: string; closeMenu: string };
+  nav: Dictionary["nav"] & { openMenu: string; closeMenu: string; mainNav: string };
 }) {
   const [open, setOpen] = useState(false);
-  const links: Array<[string, string]> = [
-    ["#home", nav.home],
-    ["#about", nav.about],
-    ["#interests", nav.interests],
-    ["#projects", nav.projects],
-    ["#future-plans", nav.future],
-    ["#contact", nav.contact],
-  ];
+  const links = getNavLinks(nav);
 
   return (
     <div className="mobile-nav">
@@ -36,7 +30,7 @@ export function MobileNav({
         )}
       </button>
       {open && (
-        <nav id="mobile-nav-menu" className="mobile-nav__menu" aria-label={nav.home}>
+        <nav id="mobile-nav-menu" className="mobile-nav__menu" aria-label={nav.mainNav}>
           <ul>
             {links.map(([href, label]) => (
               <li key={href}>

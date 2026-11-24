@@ -11,6 +11,7 @@ const en: Dictionary = {
   },
   common: {
     skipToContent: "Skip to content",
+    mainNav: "Main navigation",
     languageLabel: "Language",
     themeToLight: "Switch to light theme",
     themeToDark: "Switch to dark theme",

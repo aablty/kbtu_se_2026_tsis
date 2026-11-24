@@ -391,7 +391,9 @@ select:focus-visible {
 
 .site-footer__privacy {
   font-size: var(--text-small);
-  color: var(--text-muted);
+  /* --text-secondary, not --text-muted: this is required informational content (FR-12), and
+     design-tokens.md §6 reserves --text-muted for non-informational placeholder/disabled text only. */
+  color: var(--text-secondary);
   max-width: 60ch;
 }
 

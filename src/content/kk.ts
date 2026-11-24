@@ -11,6 +11,7 @@ const kk: Dictionary = {
   },
   common: {
     skipToContent: "Мазмұнға өту",
+    mainNav: "Негізгі навигация",
     languageLabel: "Тіл",
     themeToLight: "Жарық тақырыпқа ауысу",
     themeToDark: "Қараңғы тақырыпқа ауысу",

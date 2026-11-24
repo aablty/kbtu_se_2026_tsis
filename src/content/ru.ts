@@ -11,6 +11,7 @@ const ru: Dictionary = {
   },
   common: {
     skipToContent: "Перейти к содержимому",
+    mainNav: "Основная навигация",
     languageLabel: "Язык",
     themeToLight: "Переключить на светлую тему",
     themeToDark: "Переключить на тёмную тему",
