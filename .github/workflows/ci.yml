@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Lint, typecheck, test, build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: ESLint
+        run: bun run lint
+
+      - name: Biome (lint + format + Tailwind class order)
+        run: bun run biome
+
+      - name: TypeScript typecheck
+        run: bun run typecheck
+
+      - name: Unit tests (contact route — validation, secret handling, graceful failure)
+        run: bun run test
+
+      - name: Production build
+        run: bun run build
+        env:
+          # lib/telegram.ts only reads BOT_TOKEN/CHAT_ID inside the request handler, never at
+          # build/import time, so no secret is needed here — never put a real one in this file.
+          SITE_URL: https://nursultan-nurgali.onrender.com
