@@ -112,7 +112,8 @@ added; only new items proposed by this design are listed below:
 | Item | License | Status |
 |---|---|---|
 | Lucide icon set | ISC | Already logged in content-inventory §2 — reused as-is for `Icon` wrapper component |
-| Google Fonts — Oxanium (per requirements §10) | SIL Open Font License (OFL) | **New**: requirements §10 names Oxanium as the chosen family, resolving the "TODO" font row in content-inventory §2 — should be updated there at implementation time |
+| Google Fonts — Oxanium (per requirements §10) | SIL Open Font License (OFL) | Logged in content-inventory §2 — Latin/Latin-ext only |
+| Google Fonts — Exo 2 (Cyrillic/Kazakh fallback for Oxanium) | SIL Open Font License (OFL) | Logged in content-inventory §2 — confirmed Kazakh support via Google Fonts' Glyphs & languages list |
 | Next.js (framework) | MIT | New: core framework, free, no credit-card requirement, satisfies C-06 |
 | React (via Next.js) | MIT | New: required peer of Next.js |
 | Tailwind CSS | MIT | New: base styling layer per requirements §10 |

@@ -23,7 +23,16 @@ active nav, focus rings, primary CTA border). No gradients, no decorative color.
 Theme is a `data-theme="light"/"dark"` attribute on `<html>`, toggled client-side and persisted
 (localStorage), mirroring the kk/ru/en persistence already required by FR-05/NFR-07.
 
-## 2. Type scale (Oxanium, Google Fonts / OFL — satisfies C-06 zero-budget rule)
+## 2. Type scale (Oxanium + Cyrillic/Kazakh fallback, Google Fonts / OFL — satisfies C-06 zero-budget rule)
+
+**Font stack**: Oxanium only covers Latin/Latin-ext — it has no Cyrillic glyphs, so Kazakh and Russian
+text would fall back to the browser default and break the "technical" look. Fallback font: **Exo 2**
+(Google Fonts, SIL OFL, designed by Natanael Gama) — a geometric/techy sans that pairs visually with
+Oxanium, and its Google Fonts "Glyphs & languages" tab explicitly lists **Kazakh** (and Kazakh Latin) as
+a supported language, confirmed 2026-11-24. CSS: `font-family: 'Oxanium', 'Exo 2', sans-serif;` — Latin
+text renders in Oxanium, Cyrillic/Kazakh text automatically falls through to Exo 2's glyphs (browsers
+pick the next font in the stack per-character when the first font lacks a glyph), with a generic
+`sans-serif` as the final fallback.
 
 | Token | Size | Weight | Usage |
 |-------|------|--------|-------|

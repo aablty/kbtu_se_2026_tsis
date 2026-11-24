@@ -23,7 +23,9 @@ not a replacement for it.
 
 - Icons: **Lucide** (ISC), 20px default, stroke width 1.5, `currentColor`, `aria-hidden` (always paired
   with a text label).
-- Font: **Oxanium** (Google Fonts, OFL).
+- Font: **Oxanium** (Google Fonts, OFL) for Latin headings/display — it has no Cyrillic glyphs, so the
+  stack falls back to **Exo 2** (Google Fonts, OFL, confirmed Kazakh support) for kk/ru text:
+  `font-family: 'Oxanium', 'Exo 2', sans-serif;`.
 - Cards: **`border-radius: 0` everywhere, no exceptions.** Flat fill, single subtle shadow
   (`0 1px 3px var(--shadow)`), no multi-layer elevation.
 - Dark + light themes via CSS custom properties + `data-theme` attribute, near-monochrome palette with

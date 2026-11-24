@@ -129,9 +129,10 @@ These are fixed constraints for the design (Task #03) and implementation tasks, 
 
 - **Framework**: Next.js, with SEO/GEO support (sitemap.xml, robots.txt, structured metadata).
 - **Styling**: Tailwind CSS as the base layer, with custom CSS for a hand-built UI kit on top.
-- **Design system**: Lucide icons (already logged in content-inventory.md §2), Oxanium font, 0 border-radius
-  on cards, minimal/flat cards with subtle shadows, dark/light theme support, minimalistic "technical" visual
-  tone.
+- **Design system**: Lucide icons (already logged in content-inventory.md §2), Oxanium font with **Exo 2**
+  as a Cyrillic/Kazakh fallback (Oxanium is Latin-only; Exo 2's Google Fonts language list confirms Kazakh
+  support — see content-inventory.md §2 and design-tokens.md §2), 0 border-radius on cards, minimal/flat
+  cards with subtle shadows, dark/light theme support, minimalistic "technical" visual tone.
 - **Contact form**: server-side integration with the author's self-hosted WAHA (WhatsApp HTTP API) instance,
   using `WAHA_API_KEY`, `WAHA_API_URL`, `WAHA_SESSION_NAME` env vars — sends the contact message (incl. a
   phone field) via WhatsApp rather than email. Supersedes the "TBD" note on the contact form in
@@ -148,3 +149,4 @@ These are fixed constraints for the design (Task #03) and implementation tasks, 
 | 2026-11-24 | Baseline drafted | Initial FR/NFR/user stories/backlog created from TSIS #01 brief (Task #01: Requirements baseline and Agile plan) |
 | 2026-11-24 | Tech stack decided | Author specified Next.js, Tailwind+custom UI kit, Lucide/Oxanium design system, WAHA-based contact form, Render.com deployment blueprint (§10) ahead of Task #03 design |
 | 2026-11-24 | Contact-form correction | Author asked that the contact form not assume phone as the only callback channel; added a callback-method selector (WhatsApp/Telegram/Email) with AC-06b, updated architecture.md, the sequence diagram, both contact wireframes, and content-inventory.md §4 |
+| 2026-11-24 | Font fallback added | Oxanium has no Cyrillic glyphs; verified via Google Fonts' own Glyphs & languages tool that Exo 2 (OFL) explicitly supports Kazakh, and added it as the kk/ru fallback across design-tokens.md, content-inventory.md §2, architecture.md §7, and CLAUDE.md |

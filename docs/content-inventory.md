@@ -29,7 +29,8 @@ yet ready in any language and will be filled in before implementation.
 |-------|-----------------|------------------------|--------|
 | Portrait photo | Taken by / of the author (self) | Owned by author — no third-party rights involved | Ready, kept out of the repo for now (author's choice) — to be added at implementation time |
 | Icon set | [Lucide](https://lucide.dev) icon library | ISC license (free, attribution not required but will be credited in footer) | Ready — library chosen |
-| Typeface | Google Fonts (specific family TBD by author) | SIL Open Font License (OFL) — free for commercial/personal use | **TODO** — author to name the exact font family before implementation |
+| Typeface | Google Fonts — Oxanium (headings/display) | SIL Open Font License (OFL) — free for commercial/personal use | Ready — chosen, but Latin/Latin-ext only (no Cyrillic) |
+| Typeface fallback | Google Fonts — Exo 2 (Cyrillic/Kazakh fallback for kk/ru text; its Glyphs & languages list explicitly includes "Kazakh", confirmed 2026-11-24) | SIL Open Font License (OFL) | Ready — `font-family: 'Oxanium', 'Exo 2', sans-serif;` |
 | Stock/hero images | None chosen yet | N/A | **TODO** — author said "later"; placeholder graphics (e.g. CSS gradient or the author's own photo) will be used until a specific, properly licensed image is chosen. No stock image goes in without a recorded source URL + license here first |
 | Certificate scans | N/A | N/A | Not applicable — out of scope this iteration |
 | CV (`cv.pdf`) | Author's own document | Not published; read only to extract a short, detail-free professional summary (per author's explicit instruction) | Reference only — not a site asset |
