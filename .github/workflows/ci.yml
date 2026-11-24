@@ -29,9 +29,6 @@ jobs:
       - name: Biome (lint + format + Tailwind class order)
         run: bun run biome
 
-      - name: TypeScript typecheck
-        run: bun run typecheck
-
       - name: Unit tests (contact route — validation, secret handling, graceful failure)
         run: bun run test
 
@@ -41,3 +38,8 @@ jobs:
           # lib/telegram.ts only reads BOT_TOKEN/CHAT_ID inside the request handler, never at
           # build/import time, so no secret is needed here — never put a real one in this file.
           SITE_URL: https://nursultan-nurgali.onrender.com
+
+      - name: TypeScript typecheck
+        # Must run after the build: Next.js only generates its route-level ambient types
+        # (.next/types, e.g. LayoutProps) during build/dev, and `tsc` fails to find them before that.
+        run: bun run typecheck
